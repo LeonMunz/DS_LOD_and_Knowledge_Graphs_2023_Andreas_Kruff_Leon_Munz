@@ -26,6 +26,24 @@ conda env create -f environment.yml
 
 ```
 
+For creating and starting the docker image of Neo4J:
+
+1. Start Docker on your computer
+2. ```shell 
+   cd docker-neo4j
+   ``` 
+3. ```shell
+   docker-compose up
+   ```
+4. Enter http://localhost:7888/browser/ in your browser to access Neo4J interface
+   
+( If Login did not work,  Credentials are Username: neo4j , Password: password )
+
+5. To stop the docker instance terminate the process in the terminal with Strg + c and type 
+```shell
+docker-compose down
+```
+
 ## Description:
 
 This repository was created as part of the examination of the module Linked-Open Data and Knowledge Grahs 2023/24 (Master Digital Science) and contains the used code, part of the used datasets and the project presentation and related images from this project.
