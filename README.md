@@ -16,13 +16,13 @@ order to allow users to interactively explore the research filed to grasp inform
 
 ## Setup the Environment:
 
-For creating the necessary environment to be able to use this Repository a environment.yml is provided
+For creating the necessary environment to be able to use this Repository a requirements.txt is provided to install the necessary libararies in your environment
 
-For creating the environment use:
+For installing the dependencies use:
 
 ```shell 
 
-conda env create -f environment.yml
+pip install -r requirements.txt
 
 ```
 
