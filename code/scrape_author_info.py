@@ -1,8 +1,8 @@
 import pickle
 import json
-from pyalex import Works, Authors, Sources, Institutions, Concepts, Publishers, Funders
 from concurrent.futures import ThreadPoolExecutor
-from tqdm import tqdm
+
+from pyalex import Works, Authors, Sources, Institutions, Concepts, Publishers, Funders
 
 def scrape_authors_batch(author_ids):
     results = []

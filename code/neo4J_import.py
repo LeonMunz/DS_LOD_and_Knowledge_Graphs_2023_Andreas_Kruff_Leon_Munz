@@ -1,9 +1,9 @@
-from neo4j import GraphDatabase, RoutingControl
 import pickle
-import pandas as pd
-from bs4 import BeautifulSoup
 import json
 import re
+
+from bs4 import BeautifulSoup
+from neo4j import GraphDatabase
 
 # Credentials for accessing the local Neo4J instance
 URI = "neo4j://localhost:7999"
