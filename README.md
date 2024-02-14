@@ -66,8 +66,8 @@ This repository was created as part of the examination of the module Linked-Open
 
 ## Impressions:
 
+### UML Diagram for the Knowledge Graph Schema
 <img src="https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/LOD_UML.svg">
-![UML](https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/LOD_UML.svg)
 
 
 ## References:
