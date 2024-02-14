@@ -66,6 +66,9 @@ This repository was created as part of the examination of the module Linked-Open
 
 ## Impressions:
 
+<img src="https://github.com/LeonMunz/MiBoAlex/tree/main/images/LOD_UML.svg">
+![UML](https://github.com/LeonMunz/MiBoAlex/tree/main/images/LOD_UML.svg)
+
 
 ## References:
 
