@@ -64,10 +64,108 @@ This repository was created as part of the examination of the module Linked-Open
 | `./code/scrape_author_info.py` | Contains the code scraping additional author metadata from the OpenAlex API |
 
 
-## Impressions:
+## Impressions :
 
 ### UML Diagram for the Knowledge Graph Schema
 <img src="https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/LOD_UML.svg">
+
+## Potential Usecases:
+
+### Usecase 1: Identify relevant authors in the field of Microbiology in the past
+
+#### Query:
+
+```cypher
+MATCH (a:Article)
+WHERE a.AmountCites > 5000 AND a.PublicationYear < 2000
+WITH a
+MATCH (a)<-[:hasFirstAuthor]-(author:author)
+MATCH (a)-[hasPublicationYear]->pubyear:pub_year)
+RETURN a, author, pubyear;
+```
+
+#### Description:
+
+The generated graph illustrates authors who held the position of the first author in papers published before the year 
+2000 and garnered more than 5000 citations. Additionally, the inclusion of the "pub_year" entity facilitates the visual 
+identification of the most significant authors across the specified years.
+
+
+#### Resulting Graph
+
+<img src="https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/Usecase_1.svg">
+
+### Usecase 2: Identify Journals and Organizations that are highly participating in the research regarding "Escherichia coli Infections"
+
+#### Query:
+
+```cypher
+MATCH (a:Article)-[:hasMeshTopic]->(mesh:Mesh {name: 'Escherichia coli Infections'})
+WITH a, mesh
+MATCH (a)-[:PublishedIn]->(journal:Journal)
+WITH a, mesh, journal
+MATCH (journal)-[:refersTo]-(org:Organization)
+RETURN a, mesh, journal, org;
+```
+
+#### Description:
+
+The generated graph illustrates journals and related organizations that participate in the research of
+"Escherichia coli Infections".
+
+#### Resulting Graph
+
+<img src="https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/Usecase_2.svg">
+
+### Usecase 3: Identify Journals and Organizations that have exceptionally high APCs (article processing charge)
+
+#### Query:
+
+```cypher
+MATCH (a:Article)
+WHERE a.PriceInUSD > 8000
+WITH a
+MATCH (a)-[:PublishedIn]->(journal:Journal)
+WITH a, journal
+MATCH (journal)-[:refersTo]-(org:Organization)
+WITH a, journal, org
+MATCH (a)-[:ActualPricePaid]->(price:Price_in_$)
+RETURN a, journal, org, price;
+```
+
+#### Description:
+
+The generated graph illustrates journals and related organizations that have exceptionally high APC prices. 
+Additionally, the inclusion of the aggregated entity "Price_in_$" facilitates the visual identification of the most 
+costly journals for publishing in Open Access in this field.
+
+#### Resulting Graph
+
+<img src="https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/Usecase_3.svg">
+
+### Usecase 4: Identify research topics in microbiology that have exceptionally high APC costs in the corresponding journals 
+
+#### Query:
+
+```cypher
+MATCH (a:Article)
+WHERE a.PriceInUSD > 11500
+WITH a
+MATCH (a)-[:PublishedIn]->(journal:Journal)
+WITH a, journal
+MATCH (journal)-[:refersTo]-(org:Organization)
+WITH a, journal, org
+MATCH (a)-[:hasMeshTopic]->(mesh:Mesh)
+RETURN a, journal, org, mesh;
+```
+
+#### Description:
+
+The generated graph illustrates mesh topics that have exceptionally high APC prices. 
+
+#### Resulting Graph
+
+<img src="https://raw.githubusercontent.com/LeonMunz/MiBoAlex/main/images/Usecase_4.svg">
 
 
 ## References:
